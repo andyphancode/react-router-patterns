@@ -1,27 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import DogList from './DogList';
+import DogDetails from './DogDetails';
+import { whiskey, duke, perry, tubby } from './DogPics';
+import {
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
 
-function App() {
+function App({dogs}) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="main">
+        <Routes>
+          <Route path="/dogs" element={<DogList dogs={dogs}/>}></Route>
+          <Route path="/dogs/:name" element={<DogDetails dogs={dogs}/>}></Route>
+          <Route path="*" element= {<Navigate replace to="/dogs" />} />
+        </Routes>
+      </div>
     </div>
   );
 }
-
 
 App.defaultProps = {
   dogs: [
